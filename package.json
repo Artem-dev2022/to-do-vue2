@@ -1,5 +1,5 @@
 {
-  "name": "quick-deal",
+  "name": "to-do-vue2",
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
@@ -17,5 +17,17 @@
     "@vitejs/plugin-vue2": "^1.1.2",
     "terser": "^5.14.2",
     "vite": "^3.0.2"
-  }
+  },
+  "description": "```sh\r npm install\r ```",
+  "main": "vite.config.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Artem-dev2022/to-do-vue2.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Artem-dev2022/to-do-vue2/issues"
+  },
+  "homepage": "https://github.com/Artem-dev2022/to-do-vue2#readme"
 }
