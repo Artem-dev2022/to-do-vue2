@@ -18,6 +18,10 @@ const router = new VueRouter({
       path: '/tasks',
       name: 'tasks',
       component: TasksView
+    },
+    {
+      path: '*',
+      component: TasksView
     }
   ]
 })
