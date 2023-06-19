@@ -6,7 +6,7 @@ import vue2 from '@vitejs/plugin-vue2'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/to-do-vue2',
+  base: '/to-do-vue2/',
   plugins: [
     vue2(),
     legacy({
