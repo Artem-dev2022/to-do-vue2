@@ -1,17 +1,17 @@
 <template>
     <div class="task">
-        <input class="task__input" v-model="newValue" :readonly="onEdit" type="text">
+        <input ref="input" class="task__input" v-model="newValue" :readonly="onEdit" type="text">
         <div class="buttons">
             <button @click="edit" v-if="onEdit" class="btn btn--edit">Редактировать</button>
             <button @click="save(value)" v-else class="btn btn--save">Сохранить</button>
-            <button @click="removeTask(newValue)" class="btn btn--delete">Удалить</button>
+            <button @click="removeTask(id)" class="btn btn--delete">Удалить</button>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    props: ['value', 'removeTask', 'editTask'],
+    props: ['id', 'value', 'removeTask', 'editTask'],
     data(){
         return {
             onEdit: true,
@@ -21,7 +21,8 @@ export default {
     },
     methods: {
         edit(){
-            this.onEdit = false
+            this.onEdit = false;
+            this.$refs.input.focus();
         },
         save(){
             this.onEdit = true

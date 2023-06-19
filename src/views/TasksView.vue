@@ -10,11 +10,13 @@
 
     <div class="list">
       <TaskItem
-      v-for="task, index of taskList"
-      :key="`${task.body} ${index}`"
-      :value="task.body"
-      :removeTask="removeTask"
-      :editTask="editTask"/>
+        v-for="task of taskList"
+        :key="task.id"
+        :id="task.id"
+        :value="task.body"
+        :removeTask="removeTask"
+        :editTask="editTask"
+      />
 
       <p v-show="taskList.length < 1">Тут пока пусто...</p>
     </div>
@@ -34,10 +36,22 @@ export default {
     };
   },
   methods: {
+    getTasks(){
+        if (localStorage.getItem('tasks') === null) {
+            localStorage.setItem('tasks', JSON.stringify([]))
+        }
+        return JSON.parse(localStorage.getItem('tasks'))
+    },
+    getId(){
+        let list = this.getTasks();
+        let max = list.reduce((i, a) => i.id > a.id ? i : a, 0);
+
+        return max === 0 ? 0 : max.id + 1;
+    },
     addTask(val){
       if (this.formValue === '') return
       
-      this.taskList.push({'body': val});
+      this.taskList.push({'id': this.getId(),'body': val});
       
       localStorage.setItem('tasks', JSON.stringify(this.taskList))
       this.formValue = '';
@@ -46,8 +60,8 @@ export default {
       this.taskList.find(t => t.body === oldValue).body = newValue;
       localStorage.setItem('tasks', JSON.stringify(this.taskList))
     },
-    removeTask(body){
-      this.taskList = this.taskList.filter(t => t.body !== body)
+    removeTask(id){
+      this.taskList = this.taskList.filter(t => t.id !== id)
       localStorage.setItem('tasks', JSON.stringify(this.taskList))
     }
   },
